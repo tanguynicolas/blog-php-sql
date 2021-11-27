@@ -1,0 +1,51 @@
+{# empty Twig template #}
+<html lang="en">
+    <!-- Header-->
+    {% include 'includes/header.html.twig' %}
+
+    <body>
+        <!-- Responsive navbar-->
+        {% include 'includes/menu.html.twig' %}
+        
+        <!-- Page Content-->
+        <div class="container px-4 px-lg-5">
+            <!-- Heading Row-->
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-12">
+                    <h1 class="font-weight-light">S'enregistrer</h1>
+                    <p>Enregistrez-vous pour accéder à du contenu exclusif.</p>
+                </div>
+            </div>
+            
+            <form method=POST id="articleForm" action="form_utilisateurs.php" enctype="multipart/form-data">
+                <!-- Nom -->
+                <div class="mb-3">                  
+                    <label for="exampleInputTitlle" class="form-label">Nom</label>
+                    <input name='nom' type="title" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp">  
+                </div>
+                <!-- Prénom -->
+                <div class="mb-3">                  
+                    <label for="exampleInputTitlle" class="form-label">Prénom</label>
+                    <input name='prenom' type="title" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp">  
+                </div>
+                <!-- E-Mail -->
+                <div class="mb-3">
+                    <label for="exampleInputTitlle" class="form-label">E-Mail</label>
+                    <input name='email' type="email" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp">  
+                </div>
+                <!-- Mot de passe -->
+                <div class="mb-3">
+                    <label for="exampleInputTitlle" class="form-label">Mot de passe</label>
+                    <input name='mdp' type="password" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp">  
+                </div>                
+                <!-- Bouton submit -->
+                <div class="col-12 mb-3">
+                    <button name='save' class="btn btn-primary" type="submit">S'inscrire</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer-->
+        {% include 'includes/footer.html.twig' %}
+    </body>
+</html>

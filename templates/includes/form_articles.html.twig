@@ -1,0 +1,94 @@
+{# empty Twig template #}
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Header-->
+    {% include 'includes/header.html.twig' %}
+
+    <body>
+        <!-- Responsive navbar-->
+        {% include 'includes/menu.html.twig' %}
+        
+        <!-- Page Content-->
+        <div class="container px-4 px-lg-5">
+            
+            <!-- Heading Row-->
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-12">
+                    {% if formulaire is defined %}
+                    <h1 class="font-weight-light">Modifier un article</h1>
+                    <p>Vous pouvez modifier votre article et le sauvegarder.</p>
+                    {% else %}
+                    <h1 class="font-weight-light">Écrire un article</h1>
+                    <p>Vous pouvez écrire vos articles et les publier.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Formulaire -->
+            <form method="POST" id="articleForm" action="form_articles.php" enctype="multipart/form-data">
+                {% if modifications is defined %}
+                    <div class="form-group mb-3">
+                        <input id="id" name="id" type="hidden" value="{{ idArticle }}">
+                    </div>
+                {% endif %}
+                
+                <!-- Titre -->
+                <div class="mb-3">
+                    <label for="exampleInputTitlle" class="form-label">Titre</label>
+                    {% if modifications is defined %}
+                    <input name='titre' type="title" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp" value="{{ modifications.getTitre }}">
+                    {% else %}
+                    <input name='titre' type="title" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp">
+                    {% endif %}
+                </div>
+                
+                <!-- Texte -->
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Contenu de l'article</label>
+                    {% if modifications is defined %}
+                    <textarea name='texte' class="form-control" rows="3">{{ modifications.getTexte }}</textarea>
+                    {% else %}
+                    <textarea name='texte' class="form-control" rows="3"></textarea>
+                    {% endif %}
+                </div>
+                
+                <!-- Parcourir les fichiers -->
+                <div class="mb-3">
+                    {% if modifications is defined %}
+                        <img height="100" src="img/{{ modifications.getId }}.jpg">
+                        <input class="form-control-file" type="file" name="image" id="image">
+                    {% else %}
+                        <label for="exampleFormControlTextarea1" class="form-label">Sélectionnez une image (format .jpg)</label></br>
+                        <input class="form-control-file" type="file" name="image" id="image">
+                    {% endif %}
+                </div>
+                
+                <!-- Checkbox publier -->
+                <div class="col-12 mb-3">
+                    <div class="form-check">
+                        {% if modifications is defined %}
+                            <input type="checkbox" name="publie" id="publie" {{ publie }}>
+                            <label class="form-check-label" for="publie">Publie</label>
+                        {% else %}
+                            <input type="checkbox" name="publie" id="publie">
+                            <label class="form-check-label" for="publie">Publie</label>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Bouton submit -->
+                <div class="mb-5">
+                    {% if modifications is defined %}
+                        <div class="col-12">
+                            <button name='save' class="btn btn-primary" type="submit">Enregistrer</button>
+                        </div>
+                    {% else %}
+                        <button name='save' class="btn btn-primary" type="submit">Valider</button>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer-->
+        {% include 'includes/footer.html.twig' %}
+    </body>
+</html>

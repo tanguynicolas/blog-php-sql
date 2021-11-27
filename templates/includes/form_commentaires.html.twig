@@ -1,0 +1,59 @@
+{# empty Twig template #}
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Header-->
+    {% include 'includes/header.html.twig' %}
+
+    <body>
+        <!-- Responsive navbar-->
+        {% include 'includes/menu.html.twig' %}
+        
+        <!-- Page Content-->
+        <div class="container px-4 px-lg-5">
+            
+            <!-- Heading Row-->
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-12">
+                    <h1 class="font-weight-light">Ajouter un commentaire</h1>
+                    <p>Vous pouvez ajouter un commentaire sur l'article pour nous donner votre avis !</p>
+                </div>
+            </div>
+            
+            <form method="POST" id="articleForm" action="form_commentaires.php" enctype="multipart/form-data">                
+                <!-- E-mail -->
+                <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">E-mail</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" required>
+                </div>
+                
+                <!-- Pseudo -->
+                <div class="mb-3">
+                    <label for="exampleInputPseudo" class="form-label">Pseudo</label>
+                    <input name="pseudo" type="texte" class="form-control" id="exampleInputEmail" aria-describedby="pseudoHelp" required>
+                </div>
+                
+                <!-- Texte -->
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Contenu du commentaire</label>
+                    <textarea name='texte' class="form-control" rows="3" required></textarea>
+                </div>
+                
+                <!-- ID -->
+                <div hidden class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">id_article</label>
+                    <input value="{{ article.getId }}" name="id_article" type="texte" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+                </div>
+                
+                <!-- Bouton submit -->
+                <div class="mb-5">
+                    <div class="col-12">
+                    <button name='save' class="btn btn-primary" type="submit">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer-->
+        {% include 'includes/footer.html.twig' %}
+    </body>
+</html>
